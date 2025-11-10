@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
-
+import HabitCard from '../components/HabitCard';
 import { motion } from 'framer-motion';
 
 export default function Home(){
@@ -28,11 +28,32 @@ export default function Home(){
         </div>
       </motion.section>
 
-  
+      <section className="mb-6">
+        <h2 className="text-2xl mb-4">Featured Habits</h2>
+        {loading ? <div>Loading...</div> : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featured.map(h => <HabitCard key={h._id || h.id} habit={h} />)}
+          </div>
+        )}
+      </section>
 
-      
- <Footer />
-   
+      <section className="mb-6">
+        <h2 className="text-2xl mb-4">Why build habits?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="card">Better Focus</div>
+          <div className="card">Reduced Stress</div>
+          <div className="card">Consistent Progress</div>
+          <div className="card">Long-term Growth</div>
+        </div>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl mb-4">Tips</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="card">Use reminders to stay on track.</div>
+          <div className="card">Start small and scale gradually.</div>
+        </div>
+      </section>
     </div>
   );
 }
