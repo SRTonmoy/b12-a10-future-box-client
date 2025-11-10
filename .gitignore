@@ -1,24 +1,55 @@
-# Logs
-logs
+# =========================
+# General
+# =========================
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+.DS_Store
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# =========================
+# Vite / React specific
+# =========================
+.vite/
+.cache/
 *.local
+*.tmp
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# =========================
+# Editor / OS files
+# =========================
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+
+# =========================
+# Firebase / Netlify / Surge
+# =========================
+.firebase/
+.netlify/
+.surge/
+
+# =========================
+# Server-side (if inside same repo)
+# =========================
+/server/node_modules/
+/server/.env
+/server/dist/
+/server/build/
+
+# =========================
+# Optional extras
+# =========================
+coverage/
+cypress/videos/
+cypress/screenshots/
+*.pid
