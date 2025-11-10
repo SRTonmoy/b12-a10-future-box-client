@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import { ToastContainer } from 'react-toastify';
 import Footer from './components/Footer';
+import Register from './pages/Register';
 
 export default function App(){
   return (
@@ -13,7 +14,7 @@ export default function App(){
          <Routes>
           
           <Route path="/login" element={<Login/>} />
-          
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </main>
     
