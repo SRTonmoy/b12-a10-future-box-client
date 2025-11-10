@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Spinner = () => {
+export default function Spinner({ size = 6 }) {
   return (
-    <div>Spinner</div>
-  )
+    <div className={`inline-block animate-spin rounded-full border-4 border-current border-r-transparent`} style={{ width: `${size}rem`, height: `${size}rem` }} />
+  );
 }
-
-export default Spinner
