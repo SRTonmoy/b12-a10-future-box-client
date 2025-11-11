@@ -11,8 +11,7 @@ export default function Navbar() {
   const defaultAvatar = 'https://i.ibb.co/1rH0P4J/default-avatar.png'; // fallback avatar
 
   return (
-    <nav className="bg-white shadow sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between py-3 px-4">
+<nav className="sticky top-0 z-50 bg-black/20 backdrop-blur-md shadow-md">      <div className="container mx-auto flex items-center justify-between py-3 px-4">
         {/* Left section */}
         <div className="flex items-center gap-6">
           <Link to="/" className="text-2xl font-bold text-primary">HabitHub</Link>
