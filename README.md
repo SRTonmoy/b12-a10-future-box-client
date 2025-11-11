@@ -3,7 +3,7 @@
 A Habit Tracker single-page app built with React, Firebase Auth, Tailwind and an Express backend.
 
 ## Live site
-(Place your deployed client URL here after deploy)
+(https://future-box-api-client.web.app/)
 
 ## Features
 - Email / Password and Google Authentication (Firebase)
