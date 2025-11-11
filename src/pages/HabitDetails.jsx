@@ -4,13 +4,15 @@ import api from '../services/api';
 import Swal from 'sweetalert2';
 import { useAuth } from '../context/AuthContext';
 import Spinner from '../components/Spinner';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  Tooltip as RechartTooltip,
   ResponsiveContainer,
 } from 'recharts';
 
@@ -52,7 +54,7 @@ export default function HabitDetails() {
     return Math.round((last30 / 30) * 100);
   })();
 
-  // Prepare data for chart (last 7 days)
+  // Prepare chart data (last 7 days)
   const chartData = Array.from({ length: 7 }).map((_, i) => {
     const d = new Date();
     d.setDate(d.getDate() - (6 - i));
@@ -64,59 +66,73 @@ export default function HabitDetails() {
   });
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-6 space-y-8">
       {/* Habit Card */}
-      <div className="bg-white/80 backdrop-blur-md shadow-xl rounded-xl overflow-hidden border border-yellow-200">
+      <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-2xl overflow-hidden border border-yellow-200">
         <img
           src={habit.imageUrl || 'https://via.placeholder.com/800x350'}
           alt={habit.title}
           className="w-full h-64 object-cover"
         />
         <div className="p-6 space-y-4">
-          <h1 className="text-3xl font-bold">{habit.title}</h1>
+          <h1 className="text-3xl font-extrabold text-gray-800">{habit.title}</h1>
           <p className="text-sm text-gray-500">By {habit.userName || habit.userEmail}</p>
           <p className="text-gray-700">{habit.description}</p>
 
           {/* Streak & Progress */}
-          <div className="mt-4 space-y-2">
+          <div className="mt-4 space-y-3">
             <p className="font-semibold text-gray-700">
               🔥 Current Streak: <span className="text-green-600">{habit.currentStreak || 0}</span>
             </p>
             <p className="font-semibold text-gray-700">Progress (last 30 days):</p>
-            <div className="w-full bg-gray-200 rounded h-4 overflow-hidden">
+            <div
+              className="w-full bg-gray-200 rounded h-4 overflow-hidden"
+              data-tip={`Progress: ${progressPercent}%`}
+            >
               <div className="bg-green-500 h-4 rounded" style={{ width: `${progressPercent}%` }} />
             </div>
+            <ReactTooltip place="top" type="dark" effect="solid" />
           </div>
 
           {/* Recharts Line Chart */}
           <div className="mt-6">
-            <h3 className="text-xl font-bold mb-2 text-center">Last 7 Days Completion</h3>
-            <ResponsiveContainer width="100%" height={200}>
+            <h3 className="text-xl font-bold mb-2 text-center text-gray-800">Last 7 Days Completion</h3>
+            <ResponsiveContainer width="100%" height={250}>
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
+                <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
+                <XAxis dataKey="date" stroke="#555" />
+                <YAxis stroke="#555" domain={[0, 1]} ticks={[0, 1]} />
+                <RechartTooltip
+                  contentStyle={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '8px' }}
+                  labelStyle={{ fontWeight: 'bold', color: '#f59e0b' }}
+                  formatter={(value) => value === 1 ? 'Completed' : 'Missed'}
+                />
                 <Line type="monotone" dataKey="completed" stroke="#f59e0b" strokeWidth={3} />
               </LineChart>
             </ResponsiveContainer>
           </div>
 
           {/* Actions */}
-          <div className="mt-4 flex gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {user && (
               <button
                 onClick={markComplete}
+                data-tip="Click to mark this habit as completed today!"
                 className="btn bg-green-500 text-white hover:bg-green-600"
               >
                 Mark Complete
               </button>
             )}
             {habit.userId === (user?.uid || user?.email) && (
-              <Link to={`/update/${id}`} className="btn btn-secondary">
+              <Link
+                to={`/update/${id}`}
+                className="btn btn-secondary"
+                data-tip="Update your habit details"
+              >
                 Update Habit
               </Link>
             )}
+            <ReactTooltip place="top" type="dark" effect="solid" />
           </div>
         </div>
       </div>
