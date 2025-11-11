@@ -28,8 +28,8 @@ export default function Footer() {
         {/* Contact */}
         <div>
           <h4 className="text-lg font-bold text-white mb-2">Contact</h4>
-          <p className="text-gray-200 text-sm mb-1">Email: <a href="mailto:example@example.com" className="hover:underline">example@example.com</a></p>
-          <p className="text-gray-200 text-sm mb-1">Phone: <a href="tel:+1234567890" className="hover:underline">+1 234 567 890</a></p>
+          <p className="text-gray-200 text-sm mb-1">Email: <a href="mailto:sahriarrrahman701@gmail.com" className="hover:underline">sahriarrahman701@gmail.com</a></p>
+          <p className="text-gray-200 text-sm mb-1">Phone: <a href="tel:+8801518944542" className="hover:underline">+8801518944542</a></p>
           <p className="text-gray-200 text-sm">Address: 123 Habit Street, Productivity City</p>
         </div>
 
@@ -37,16 +37,16 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-bold text-white mb-2">Follow Us</h4>
           <div className="flex gap-4 mt-2">
-            <a href="#" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Facebook">
+            <a href="https://www.facebook.com/SRTdarkhunter007/" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Facebook">
               <Facebook size={24} />
             </a>
-            <a href="#" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Twitter">
+            <a href="https://x.com/" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Twitter">
               <Twitter size={24} />
             </a>
-            <a href="#" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Instagram">
+            <a href="https://www.instagram.com/sr_tonmoy0769/" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="Instagram">
               <Instagram size={24} />
             </a>
-            <a href="#" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/md-shahriar-rahman-369237296/" className="hover:text-white transition transform hover:-translate-y-1 duration-300" aria-label="LinkedIn">
               <Linkedin size={24} />
             </a>
           </div>
