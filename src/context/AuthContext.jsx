@@ -17,16 +17,16 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(null); // ✅ store JWT token
+  const [token, setToken] = useState(null); 
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (u) => {
       if (u) {
         await u.reload();
-        const idToken = await getIdToken(u, true); // ✅ get Firebase token
+        const idToken = await getIdToken(u, true); 
         setUser({ ...u });
         setToken(idToken);
-        localStorage.setItem('accessToken', idToken); // ✅ store for API use
+        localStorage.setItem('accessToken', idToken); 
       } else {
         setUser(null);
         setToken(null);

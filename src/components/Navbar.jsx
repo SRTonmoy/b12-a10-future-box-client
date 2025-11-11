@@ -15,12 +15,19 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Left section */}
         <div className="flex items-center gap-8">
-          <Link 
-            to="/" 
-            className="text-3xl font-extrabold text-yellow-400 hover:text-yellow-300 transition-all duration-200"
-          >
-            HabitHub
-          </Link>
+          <Link
+  to="/"
+  className="text-3xl font-extrabold text-blue-500 hover:text-blue-400 transition-all duration-200 tracking-tight 
+             relative"
+  style={{
+    WebkitTextStroke: "1px black", // white outline
+    textShadow: "2px 2px 4px rgba(236, 236, 236, 0.2)" // optional subtle shadow for depth
+  }}
+>
+  HabitHub
+</Link>
+
+
           <Link 
             to="/browse" 
             className="text-base font-semibold text-white hover:text-yellow-300 transition-all duration-200"
