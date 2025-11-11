@@ -29,15 +29,34 @@ export default function Login(){
   };
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h2 className="text-2xl mb-4">Login</h2>
-      <form onSubmit={handle} className="space-y-3">
-        <input className="input" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-        <input className="input" type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
-        <button className="btn btn-primary w-full">Login</button>
-      </form>
-      <button onClick={handleGoogle} className="btn w-full mt-3">Sign in with Google</button>
-      <p className="mt-3">Don't have account? <Link to="/register" className="text-blue-600">Register</Link></p>
-    </div>
+    <div className="max-w-md mx-auto p-6 bg-white/30 backdrop-blur-md rounded-lg shadow-lg">
+  <h2 className="text-2xl mb-4 font-bold text-gray-800">Login</h2>
+  
+  <form onSubmit={handle} className="space-y-3">
+    <input 
+      className="input w-full p-3 border border-gray-300 rounded" 
+      placeholder="Email" 
+      value={email} 
+      onChange={e => setEmail(e.target.value)} 
+      required
+    />
+    <input 
+      className="input w-full p-3 border border-gray-300 rounded" 
+      type="password" 
+      placeholder="Password" 
+      value={password} 
+      onChange={e => setPassword(e.target.value)} 
+      required
+    />
+    <button className="btn btn-primary w-full py-2">Login</button>
+  </form>
+
+  <button onClick={handleGoogle} className="btn w-full mt-3">Sign in with Google</button>
+  
+  <p className="mt-3 text-gray-800">
+    Don't have account? <Link to="/register" className="text-blue-600">Register</Link>
+  </p>
+</div>
+
   );
 }

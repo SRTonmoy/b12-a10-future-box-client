@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 export default function HabitCard({ habit: initialHabit }) {
   const [habit, setHabit] = useState(initialHabit);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const markComplete = async () => {
     if (!user) return Swal.fire('Login required', 'Please login to mark complete', 'info');
@@ -18,6 +19,19 @@ export default function HabitCard({ habit: initialHabit }) {
     } catch (err) {
       Swal.fire('Error', err.response?.data?.message || err.message, 'error');
     }
+  };
+
+  const handleViewDetails = () => {
+    if (!user) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Login Required',
+        text: 'Please login to view full habit details.',
+        confirmButtonText: 'Login'
+      }).then(() => navigate('/login'));
+      return;
+    }
+    navigate(`/habits/${habit._id}`);
   };
 
   return (
@@ -40,9 +54,12 @@ export default function HabitCard({ habit: initialHabit }) {
       </p>
 
       <div className="mt-3 flex gap-2">
-        <Link to={`/habits/${habit._id}`} className="btn btn-primary flex-1 text-center">
+        <button
+          onClick={handleViewDetails}
+          className="btn btn-primary flex-1 text-center"
+        >
           View Details
-        </Link>
+        </button>
         {user && (
           <button
             onClick={markComplete}

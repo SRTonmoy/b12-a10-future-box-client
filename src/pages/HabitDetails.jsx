@@ -4,6 +4,7 @@ import api from '../services/api';
 import Swal from 'sweetalert2';
 import { useAuth } from '../context/AuthContext';
 import Spinner from '../components/Spinner';
+import defaultHabitImg from '../assets/defHabit.jpg';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import {
@@ -70,7 +71,7 @@ export default function HabitDetails() {
       {/* Habit Card */}
       <div className="bg-white/90 backdrop-blur-md shadow-xl rounded-2xl overflow-hidden border border-yellow-200">
         <img
-          src={habit.imageUrl || 'https://via.placeholder.com/800x350'}
+          src={habit.imageUrl || defaultHabitImg}
           alt={habit.title}
           className="w-full h-64 object-cover"
         />
