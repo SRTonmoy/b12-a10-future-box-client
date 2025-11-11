@@ -1,10 +1,11 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Spinner from '../components/Spinner';
 
 export default function ProtectedRoute({ children }){
   const { user, loading } = useAuth();
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return <Spinner size={60} />;
   if (!user) return <Navigate to="/login" replace />;
   return children;
 }

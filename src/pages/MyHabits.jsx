@@ -39,7 +39,7 @@ export default function MyHabits() {
     }
   };
 
-  if (loading) return <div className="p-6"><Spinner size={6} /></div>;
+if (loading) return <Spinner size={80} />;
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8 bg-white/30 backdrop-blur-md rounded-lg shadow-lg">

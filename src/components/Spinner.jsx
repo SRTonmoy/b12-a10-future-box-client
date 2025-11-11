@@ -1,16 +1,14 @@
 import React from 'react';
+import loadingGif from '../assets/loading.gif'; // path to your GIF
 
-export default function Spinner({ size = 6, color = 'currentColor' }) {
+export default function Spinner({ size = 50 }) {
   return (
-    <div
-      className="inline-block animate-spin rounded-full border-4 border-current border-r-transparent"
-      style={{
-        width: `${size}rem`,
-        height: `${size}rem`,
-        borderColor: color,
-      }}
-      role="status"
-      aria-label="Loading"
-    />
+    <div className="flex justify-center items-center">
+      <img 
+        src={loadingGif} 
+        alt="Loading..." 
+        style={{ width: size, height: size }} 
+      />
+    </div>
   );
 }
