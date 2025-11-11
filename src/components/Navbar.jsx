@@ -1,43 +1,76 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Navbar(){
+export default function Navbar() {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  const defaultAvatar = 'https://i.ibb.co/1rH0P4J/default-avatar.png'; // fallback avatar
+
   return (
-    <nav className="bg-white shadow">
-      <div className="container flex items-center justify-between py-3">
+    <nav className="bg-white shadow sticky top-0 z-50">
+      <div className="container mx-auto flex items-center justify-between py-3 px-4">
+        {/* Left section */}
         <div className="flex items-center gap-6">
-          <Link to="/" className="text-2xl font-bold">HabitHub</Link>
-          <Link to="/browse" className="text-sm text-gray-600">Browse Public Habits</Link>
+          <Link to="/" className="text-2xl font-bold text-primary">HabitHub</Link>
+          <Link to="/browse" className="text-sm text-gray-600 hover:text-primary">Browse Public Habits</Link>
         </div>
 
+        {/* Right section */}
         <div className="flex items-center gap-4">
-          <Link to="/add-habit" className="text-sm">Add Habit</Link>
-          <Link to="/my-habits" className="text-sm">My Habits</Link>
+          <Link to="/add-habit" className="text-sm hover:text-primary">Add Habit</Link>
+          <Link to="/my-habits" className="text-sm hover:text-primary">My Habits</Link>
 
+          {/* Not Logged In */}
           {!user && (
             <>
-              <button onClick={()=>navigate('/login')} className="btn">Login</button>
-              <button onClick={()=>navigate('/register')} className="btn btn-primary">Signup</button>
+              <button onClick={() => navigate('/login')} className="btn btn-outline btn-sm">Login</button>
+              <button onClick={() => navigate('/register')} className="btn btn-primary btn-sm">Signup</button>
             </>
           )}
 
+          {/* Logged In */}
           {user && (
             <div className="relative">
-              <button onClick={()=>setOpen(o=>!o)} className="flex items-center gap-2">
-                <img src={user.photoURL || 'https://via.placeholder.com/40'} alt="avatar" className="w-10 h-10 rounded-full" />
+              <button
+                onClick={() => setOpen(o => !o)}
+                className="flex items-center gap-2 focus:outline-none"
+              >
+                <img
+                  referrerPolicy="no-referrer"
+                  src={user.photoURL || defaultAvatar}
+                  alt={user.displayName || "User Avatar"}
+                  className="w-10 h-10 rounded-full border"
+                />
               </button>
-              {open && (
-                <div className="absolute right-0 mt-2 p-3 bg-white border rounded shadow w-56 z-20">
-                  <p className="font-semibold">{user.displayName || 'User'}</p>
-                  <p className="text-xs text-gray-500">{user.email}</p>
-                  <button onClick={async ()=>{ await logout(); navigate('/'); }} className="mt-2 btn w-full text-left text-red-600">Log out</button>
-                </div>
-              )}
+
+              <AnimatePresence>
+                {open && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 mt-3 p-3 bg-white border rounded shadow-lg w-56 z-20"
+                  >
+                    <p className="font-semibold">{user.displayName || 'User'}</p>
+                    <p className="text-xs text-gray-500 mb-2">{user.email}</p>
+                    <button
+                      onClick={async () => {
+                        await logout();
+                        setOpen(false);
+                        navigate('/');
+                      }}
+                      className="btn btn-sm w-full bg-red-100 hover:bg-red-200 text-red-600"
+                    >
+                      Log out
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </div>

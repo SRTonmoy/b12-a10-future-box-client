@@ -4,6 +4,7 @@ import HabitCard from '../components/HabitCard';
 import { motion } from 'framer-motion';
 import { FaBrain, FaClock, FaRunning, FaSmile } from 'react-icons/fa';
 import Spinner from '../components/Spinner';
+import FeaturedCarousel from '../components/FeaturedCarousel';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -70,6 +71,13 @@ export default function Home() {
           </div>
         </Slider>
       </motion.section>
+
+
+      <FeaturedCarousel slides={[
+  { title: "Morning Routine", text: "Start your day with productive habits." },
+  { title: "Fitness Goals", text: "Track workouts and build consistency." },
+  { title: "Study Plan", text: "Maintain streaks on your learning journey." },
+]} />
 
       {/* Featured Habits */}
       <section>
