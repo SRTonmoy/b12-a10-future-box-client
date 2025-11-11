@@ -84,7 +84,7 @@ export default function Home() {
       {/* Featured Habits */}
       <section>
         <h2 className="text-3xl font-bold mb-6">Featured Habits</h2>
-        {loading ? <Spinner size={8} /> : (
+        {loading ? <Spinner size={12} /> : (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
     {featured.map(h => <HabitCard key={h._id || h.id} habit={h} />)}
   </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import loadingGif from '../assets/loading.gif'; // path to your GIF
+import loadingGif from '../assets/load-35.gif';
 
-export default function Spinner({ size = 50 }) {
+export default function Spinner({ size = 200 }) { 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center py-10"> 
       <img 
         src={loadingGif} 
         alt="Loading..." 
